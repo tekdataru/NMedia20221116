@@ -1,6 +1,7 @@
 package ru.netology.nmedia.di
 
 import android.content.Context
+import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,10 +14,12 @@ import ru.netology.nmedia.auth.AppAuth
 import ru.netology.nmedia.db.AppDb
 import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.repository.PostRepositoryImpl
+import ru.netology.nmedia.viewmodel.ViewModelFactory
 
 class DependencyContainer(
     private val context: Context
 ) {
+    val viewModelFactory: ViewModelProvider.Factory = ViewModelFactory(repository, appAuth)
 
     companion object {
         private const val BASE_URL = "${BuildConfig.BASE_URL}/api/slow/"

@@ -19,7 +19,10 @@ import ru.netology.nmedia.di.DependencyContainer
 import ru.netology.nmedia.viewmodel.AuthViewModel
 
 class AppActivity : AppCompatActivity(R.layout.activity_app) {
-    private val viewModel: AuthViewModel by viewModels()
+    //private val viewModel: AuthViewModel by viewModels()
+    private val viewModel: AuthViewModel by viewModels {
+        DependencyContainer.getInstance().viewModelFactory
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

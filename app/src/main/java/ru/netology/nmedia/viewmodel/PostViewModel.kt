@@ -33,12 +33,12 @@ private val empty = Post(
 private val noPhoto = PhotoModel()
 
 @ExperimentalCoroutinesApi
-class PostViewModel(application: Application) : AndroidViewModel(application) {
-    // упрощённый вариант
-    private val repository: PostRepository =
-        PostRepositoryImpl(AppDb.getInstance(context = application).postDao())
+class PostViewModel(
+    private val repository: PostRepository,
+    appAuth: AppAuth,
+) : ViewModel() {
 
-    val data: LiveData<FeedModel> = AppAuth.getInstance()
+    val data: LiveData<FeedModel> = AppAuth
         .authStateFlow
         .flatMapLatest { (myId, _) ->
             repository.data
