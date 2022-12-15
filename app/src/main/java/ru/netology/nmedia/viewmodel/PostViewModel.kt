@@ -38,7 +38,7 @@ class PostViewModel(
     appAuth: AppAuth,
 ) : ViewModel() {
 
-    val data: LiveData<FeedModel> = AppAuth
+    val data: LiveData<FeedModel> = appAuth
         .authStateFlow
         .flatMapLatest { (myId, _) ->
             repository.data

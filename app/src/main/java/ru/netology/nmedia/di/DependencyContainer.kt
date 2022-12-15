@@ -19,7 +19,6 @@ import ru.netology.nmedia.viewmodel.ViewModelFactory
 class DependencyContainer(
     private val context: Context
 ) {
-    val viewModelFactory: ViewModelProvider.Factory = ViewModelFactory(repository, appAuth)
 
     companion object {
         private const val BASE_URL = "${BuildConfig.BASE_URL}/api/slow/"
@@ -35,8 +34,6 @@ class DependencyContainer(
             return instance!!
             }
         }
-
-
 
     private val logging = HttpLoggingInterceptor().apply {
         if (BuildConfig.DEBUG) {
@@ -77,6 +74,8 @@ class DependencyContainer(
         postDao,
         apiService
     )
+
+    val viewModelFactory: ViewModelProvider.Factory = ViewModelFactory(repository, appAuth)
 
 
 }

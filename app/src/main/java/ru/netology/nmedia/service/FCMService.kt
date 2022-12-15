@@ -9,6 +9,7 @@ import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
 import ru.netology.nmedia.R
 import ru.netology.nmedia.auth.AppAuth
+import ru.netology.nmedia.di.DependencyContainer
 
 class FCMService : FirebaseMessagingService() {
     private val content = "content"
@@ -35,6 +36,8 @@ class FCMService : FirebaseMessagingService() {
     }
 
     override fun onNewToken(token: String) {
-        AppAuth.getInstance().sendPushToken(token)
+        DependencyContainer.getInstance().
+        appAuth.
+        sendPushToken(token)
     }
 }
